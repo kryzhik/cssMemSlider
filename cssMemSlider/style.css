@@ -11,20 +11,24 @@ body {
 }
 
 .wrapper {
-  width: 700px;
+  width: 60%;
   height: 450px;
-  position: relative;
   margin: 0 auto;
-  margin-top: 10%;
+  margin-top: 100px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .slider {
-  height: 450px;
-  width: inherit;
+  height: 350px;
+  width: 100%;
   position: relative;
+  margin: 0 auto;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  padding: 20px;
 }
 
 .wrapper > input {
@@ -32,16 +36,16 @@ body {
 }
 
 .slides {
-  width: 95%;
+  width: 100%;
   height: inherit;
   position: absolute;
   object-fit: contain;
+  border-radius: 10px;
   background-color: rgb(128, 130, 131);
   z-index: 0;
   opacity: 0;
-  transition: transform ease-in-out 0.5s;
-  transform: translate(700px, 0);
-
+  /* transition: transform ease-in-out 0.5s;
+  transform: translate(700px, 0); */
 }
 
 .slides > img {
@@ -50,38 +54,41 @@ body {
   border-radius: 10px;
 }
 
-.slides > p {
-   margin-top: 80px;
-   margin-left: 20px;
-   opacity: 0;
+.description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-@keyframes text-animate {
-   0% {
-      opacity: 0;
-      margin-top: 80px;
-   }
-   100% {
-      opacity: 1;
-      margin-top: 20px;
-   }
+.description__text > p {
+  position: absolute;
+  opacity: 0;
+  z-index: 0;
+}
+
+.description__text {
+  position: relative;
+  width: 200px;
+  height: 16px;
 }
 
 .controls {
-  position: absolute;
-  right: 40px;
-  margin-top: 20px;
-  width: 80px;
+  width: 120px;
   display: flex;
   justify-content: space-between;
-  
 }
-
-.wrapper label {
+.controls label {
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  display: inline-block;
-  height: 12px;
-  width: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.controls label > .round {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   position: relative;
   background-color: rgb(28, 7, 134);
@@ -89,15 +96,15 @@ body {
   transition: background-color ease-in-out 0.5s;
 }
 
-.wrapper label:hover {
+.controls label:hover > .round {
   background-color: white;
   border-color: white;
 }
 
-#check1:checked ~ .controls label:nth-of-type(1),
-#check2:checked ~ .controls label:nth-of-type(2),
-#check3:checked ~ .controls label:nth-of-type(3),
-#check4:checked ~ .controls label:nth-of-type(4) {
+#check1:checked ~ .controls label:nth-of-type(1) > div,
+#check2:checked ~ .controls label:nth-of-type(2) > div,
+#check3:checked ~ .controls label:nth-of-type(3) > div,
+#check4:checked ~ .controls label:nth-of-type(4) > div {
   background-color: rgb(128, 130, 131);
 }
 
@@ -105,53 +112,60 @@ body {
 #check2:checked ~ .slider > .slide2,
 #check3:checked ~ .slider > .slide3,
 #check4:checked ~ .slider > .slide4 {
-  /* z-index: 1; */
   animation: animate-in 1s ease-in-out;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  
 }
 
-#check1:checked ~ .slider > .slide1 > p,
-#check2:checked ~ .slider > .slide2 > p,
-#check3:checked ~ .slider > .slide3 > p,
-#check4:checked ~ .slider > .slide4 > p {
-  /* z-index: 1; */
-  animation: text-animate 1.7s ease-in-out;
+#check1:checked ~ .description > .description__text > .slide__text1,
+#check2:checked ~ .description > .description__text > .slide__text2,
+#check3:checked ~ .description > .description__text > .slide__text3,
+#check4:checked ~ .description > .description__text > .slide__text4 {
+  animation: animate-in 1.5s ease-in-out;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  
 }
 
 @keyframes animate-in {
-   0% {
-      opacity:0;
-      transform: translate(700px,0);
-   }
-   100% {
-      opacity:1;
-      transform: translate(0,0);
-   }
+  0% {
+    opacity: 0;
+    transform: translate(660px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 }
 #check1:checked ~ .slider > .slide2,
 #check2:checked ~ .slider > .slide1,
 #check3:checked ~ .slider > .slide2,
-
 #check4:checked ~ .slider > .slide3 {
-  /* z-index: 1; */
   animation: animate-out 1s ease-in-out;
   animation-iteration-count: 1;
-  
-  
 }
 @keyframes animate-out {
-   0% {
-      opacity:1;
-      transform: translate(0,0);
-      
-   }
-   100% {
-      opacity:0;
-      transform: translate(-700px,0);
-   }
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(660px, 0);
+  }
+}
+
+@media (max-width: 830px) {
+  .wrapper {
+    width: 80%;
+  }
+}
+
+@media (max-width: 568px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .slider {
+    height: 300px;
+  }
 }
