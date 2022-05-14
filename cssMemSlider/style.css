@@ -50,6 +50,23 @@ body {
   border-radius: 10px;
 }
 
+.slides > p {
+   margin-top: 80px;
+   margin-left: 20px;
+   opacity: 0;
+}
+
+@keyframes text-animate {
+   0% {
+      opacity: 0;
+      margin-top: 80px;
+   }
+   100% {
+      opacity: 1;
+      margin-top: 20px;
+   }
+}
+
 .controls {
   position: absolute;
   right: 40px;
@@ -90,6 +107,17 @@ body {
 #check4:checked ~ .slider > .slide4 {
   /* z-index: 1; */
   animation: animate-in 1s ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  
+}
+
+#check1:checked ~ .slider > .slide1 > p,
+#check2:checked ~ .slider > .slide2 > p,
+#check3:checked ~ .slider > .slide3 > p,
+#check4:checked ~ .slider > .slide4 > p {
+  /* z-index: 1; */
+  animation: text-animate 1.7s ease-in-out;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   
