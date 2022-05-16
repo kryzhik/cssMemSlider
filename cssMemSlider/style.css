@@ -11,10 +11,10 @@ body {
 }
 
 .wrapper {
-  width: 60%;
-  height: 450px;
+  width: 55%;
+  height: 550px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 60px;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   display: flex;
@@ -24,7 +24,7 @@ body {
 }
 
 .slider {
-  height: 350px;
+  height: 400px;
   width: 100%;
   position: relative;
   margin: 0 auto;
@@ -49,7 +49,7 @@ body {
 }
 
 .slides > img {
-  height: 350px;
+  height: 400px;
   width: 100%;
   border-radius: 10px;
 }
@@ -68,8 +68,9 @@ body {
 
 .description__text {
   position: relative;
-  width: 200px;
+  width: 450px;
   height: 16px;
+  font-weight: bold;
 }
 
 .controls {
@@ -163,9 +164,20 @@ body {
 @media (max-width: 568px) {
   .wrapper {
     width: 95%;
+    flex-direction: column;
+    height: 500px;
   }
 
   .slider {
-    height: 300px;
+    height: 400px;
+  }
+  .slider {
+    order: 1;
+  }
+  .controls {
+    order: 2;
+  }
+  .description {
+    order: 3;
   }
 }
